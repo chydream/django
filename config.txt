@@ -2,7 +2,8 @@ pip install django==1.11.18
 mkvirtualenv django1.11 创建虚拟环境
 workon django1.11 切换虚拟环境
 
-命令生成模板
-django-admin.py startproject my_project
+
+django-admin.py startproject my_project 命令生成模板
 cd my_project
 python manage.py runserver
+python manage.py startapp accounts 创建accounts模块
