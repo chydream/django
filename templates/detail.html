@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .row1{
+            color:red;
+        }
+        .row2{
+            color:blue;
+        }
+    </style>
+</head>
+<body>
+jinja2 {{ username }}
+一、循环控制
+{% for item in data_list %}
+{% endfor %}
+二、条件控制
+{% if condition %}
+{% elif condition %}
+{% else %}
+{% endif %}
+三、添加注释
+{# 这是一个注释 #}
+
+<ul>
+{% for item in list_city %}
+    <li>{{ item }}</li>
+{% endfor %}
+</ul>
+
+<ul>
+    {% for key,value in user_info.items %}
+    <li>{{ key }} - {{ value }}</li>
+    {% endfor %}
+</ul>
+
+<ul>
+    {% for item in list_prods reversed %}
+    <li class="{% cycle 'row1' 'row2' %}">{{ forloop.counter0 }}:{{ item.name }} - {{ item.price }}</li>
+    {% endfor %}
+</ul>
+
+<ul>
+    {% for item in list_empty %}
+    <li>有数据{{item}}</li>
+    {% empty %}
+    <li>没有</li>
+    {% endfor %}
+</ul>
+三、url配置
+<a href="{% url 'print_attr' %}" target="_blank">打印相应对象</a>
+<a href="{% url 'article_detail' 2019 %}?day=5" target="_blank">2019</a>
+<a href="{% url 'auth:index'%}" target="_blank">命名空间</a>
+<h5>当前时间：{% now 'jS F Y H:i' %}</h5>
+四、过滤器
+过滤器语法：{# value|filter_name:params  upper  |date:'D d M Y'        #}
+{{name|capfirst}}
+<p>{{now|date:'Y-m-d'}}</p>
+
+{{no_data1|default:'dddd'}}
+{{no_data2|default_if_none:'无'}}
+<h5>{{pi|floatformat:3}}</h5>
+<h5>{{html|safe}}</h5>
+<h5>{{html|truncatechars:5}}</h5>
+<h5>{{html|truncatechars_html:5}}</h5>
+<h5>{{html|truncatewords:5}}</h5>
+{% load oauth_extras  %}
+<h2>{{name|warning|safe}}</h2>
+<p>{{money|money_format}}</p>
+</body>
+</html>

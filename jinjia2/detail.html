@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+jinja2 {{ username }}
+一、循环控制
+{% for item in data_list %}
+{% endfor %}
+二、条件控制
+{% if condition %}
+{% elif condition %}
+{% else %}
+{% endif %}
+三、添加注释
+{# 这是一个注释 #}
+
+<ul>
+{% for item in list_city %}
+    <li>{{ item }}</li>
+{% endfor %}
+</ul>
+
+<ul>
+    {% for item in list_prods %}
+    <li>{{ item.name }} - {{ item.price }}</li>
+    {% endfor %}
+</ul>
+
+<ul>
+    {% for item in list_empty %}
+    <li>有数据{{item}}</li>
+    {% empty %}
+    <li>没有</li>
+    {% endfor %}
+</ul>
+</body>
+</html>
