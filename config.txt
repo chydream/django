@@ -8,3 +8,7 @@ cd my_project
 python manage.py runserver
 python manage.py startapp accounts 创建accounts模块
 
+python manage.py check
+python manage.py makemigrations
+python manage.py migrate
+

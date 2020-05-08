@@ -59,7 +59,6 @@ jinja2 {{ username }}
 过滤器语法：{# value|filter_name:params  upper  |date:'D d M Y'        #}
 {{name|capfirst}}
 <p>{{now|date:'Y-m-d'}}</p>
-
 {{no_data1|default:'dddd'}}
 {{no_data2|default_if_none:'无'}}
 <h5>{{pi|floatformat:3}}</h5>
@@ -70,5 +69,19 @@ jinja2 {{ username }}
 {% load oauth_extras  %}
 <h2>{{name|warning|safe}}</h2>
 <p>{{money|money_format}}</p>
+<p>{{money|accounting:3}}</p>
+五、模板的抽象与继承
+1.模板内容
+{% block sidebar %}
+    <!--菜单栏内容-->
+{% endblock %}
+{% extends 'base.html' %}
+2.子模块内容
+{% extends 'base.html' %}
+{% block sidebar %}
+    {{super}}
+    <!--菜单栏内容-->
+    {% include 'footer.html' %}
+{% endblock %}
 </body>
 </html>
