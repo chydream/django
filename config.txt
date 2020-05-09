@@ -12,3 +12,86 @@ python manage.py check
 python manage.py makemigrations
 python manage.py migrate
 
+
+
+curd
+一、
+python manage.py shell
+from weibo.models import WeiboUser as User
+user_obj = User(username='admin',password='123456',nickname='管理员')
+user_obj.save()
+
+user_obj = User()
+user_obj.username='test'
+user_obj.password='123456'
+user_obj.nickname='管理员'
+user_obj.save()
+
+user_obj = User.objects.create(username='admin',password='123456',nickname='管理员')
+user_obj.pk
+二、
+User.objects.get(pk=1)
+User.objects.all()
+User.objects.filter
+三、
+user_obj = User.objects.get(pk=1)
+user_obj.nickname = '测试测试'
+user_obj.save()
+User.objects.all().update(password='a123456')
+四、
+user_obj = User.objects.get(pk=2)
+user_obj.delete()
+User.objects.all().delete()
+五、
+get_or_create()
+user1 = User(username='test1',password = '123456', nickname='test1')
+user2 = User(username='test2',password = '123456', nickname='test2')
+user3 = User(username='test3',password = '123456', nickname='test3')
+bulk_create([user1,user2,user3])
+first()/last() 返回第一条和最后一条
+count() 返回计数
+User.objects.filter(username='zansan').exists()
+filter()
+exclude()
+order_by()
+none() 创建一个空的结果集
+using()使用指定的数据库查询
+User.objects.all()[(page-1)*10:page*10] 分页处理
+django.core.paginator
+p = Paginator(objects, page_size)
+p.count 总条数
+p.num_pages  总页数
+p.page_range 页码范围
+page = p.page(page_num)
+page.number 页码
+page.object_list 页码列表
+page.paginator 引用
+page.has_next()
+page.has_previous()
+page.has_other_pages()
+page.next_page_number()
+page.previous_page_numer()
+六、
+User.objects.filter(username__exact=6)
+User.objects.filter(username__iexact=6)
+User.objects.filter(username__contains='san')
+User.objects.filter(username__icontains='san')
+User.objects.filter(username__startswith='san')
+User.objects.filter(username__istartswith='san')
+User.objects.filter(username__endswith='san')
+User.objects.filter(username__iendswith='san')
+User.objects.filter(status__in=(2,4))
+User.objects.filter(status__gt=1)  #gt gte lt lte isnull
+User.objects.filter(remark__isnull=True)
+User = datetime.now().date()
+date = datetime(2019,4,16)
+User.objects.filter(create_at__date=date)
+User.objects.filter(create_at__gt=date)
+#date year month day hour/minute/second  week/week_day
+
+外键查询
+user = WeiboUser.objects.get(pk=1)
+comment_list = Comment.objects.filter(user=user)
+Comment.objects.filter(use__username__contains='zhangsan')
+for item in comment_list:
+    print(item.user.username)

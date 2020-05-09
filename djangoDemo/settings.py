@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'oauth.apps.OauthConfig',
-    'mall.apps.MallConfig'
+    'mall.apps.MallConfig',
+    'weibo.apps.WeiboConfig'
 ]
 
 MIDDLEWARE = [
@@ -134,7 +135,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
