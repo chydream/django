@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul>
+    {% for comment in comments_list %}
+    <li>
+        <h4>评论内容：{{comment.content}}</h4>
+        <p>{{comment.created_at}}--{{comment.user.nickname}}</p>
+        <p>微博内容：{{comment.weibo.content}}</p>
+    </li>
+    {% endfor %}
+</ul>
+</body>
+</html>

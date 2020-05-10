@@ -26,7 +26,7 @@ SECRET_KEY = '_9+mjfya=367ijm^hr5ey-o8%b@7@s+&$e8934p872rw1fwde1'
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
+INTERNAL_IPS = ['127.0.0.1']
 
 # Application definition
 
@@ -39,10 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'oauth.apps.OauthConfig',
     'mall.apps.MallConfig',
-    'weibo.apps.WeiboConfig'
+    'weibo.apps.WeiboConfig',
+    'grade.apps.GradeConfig',
+    'debug_toolbar'
 ]
 
 MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',

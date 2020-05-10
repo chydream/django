@@ -95,3 +95,8 @@ comment_list = Comment.objects.filter(user=user)
 Comment.objects.filter(use__username__contains='zhangsan')
 for item in comment_list:
     print(item.user.username)
+
+
+Sum Avg Count Max/Min
+User.objects.all().aggregate(Avg('price'))
+User.objects.annotate(Count('authors'))

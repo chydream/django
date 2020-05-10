@@ -1,5 +1,23 @@
 from django.db import models
 
+from django.contrib.auth.models import User
+
+class MyUser(User):
+    class Meta:
+        proxy = True
+
+    def get_format_username(self):
+        return self.username[:3]+'***'
+
+
+
+class UserManager(models.Manager):
+    def top_users(self):
+        return self.all().order_by('-crated_at')[:5]
+        # return []
+
+
+
 # Create your models here.
 class WeiboUser(models.Model):
     USER_STATUS = (
@@ -13,6 +31,8 @@ class WeiboUser(models.Model):
     status = models.SmallIntegerField('用户状态', choices=USER_STATUS, default=1)
     created_at = models.DateTimeField('用户的创建时间', null=True, blank=True)
     remark = models.CharField('备注信息', max_length=256, null=True, blank=True)
+    objects = models.Manager()      # 加上这句就可以了
+    # users = UserManager()      # 加上这句就可以了
     class Meta:
         db_table = 'weibo_user'
 
@@ -40,6 +60,7 @@ class Comment(models.Model):
     created_at = models.DateTimeField('评论时间', auto_now_add=True)
     user = models.ForeignKey(WeiboUser, verbose_name='评论的用户')
     weibo = models.ForeignKey(Weibo,verbose_name='关联的微博')
+    objects = models.Manager()
     class Meta:
         db_table = 'weibo_comments'
 
