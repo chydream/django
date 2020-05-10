@@ -4,6 +4,9 @@
     <meta name="description" content=""/>
 {% endblock %}
 {% block container %}
+    <header class="wy-header">
+      <div class="wy-header-title">积分商城</div>
+    </header>
     <!--顶部搜索-->
     <header class="weui-header">
       <div class="weui-search-bar" id="searchBar">
@@ -261,8 +264,9 @@
         </div>
       </div>
     </div>
+    {% include 'footer.html' %}
 {% endblock %}
-{% include 'footer.html' %}
+
 {% block swiper %}
     <script src="/static/js/swiper.js"></script>
     <script>

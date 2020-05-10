@@ -1,0 +1,4 @@
+SLIDER_TYPE_INDEX = 11
+SLIDER_TYPES_CHOICES = (
+    (11, '首页'),
+)
