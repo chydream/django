@@ -44,18 +44,11 @@
       <!--顶部轮播-->
       <div class="swiper-container swiper-banner">
         <div class="swiper-wrapper">
+          {% for slider in  slider_list%}
           <div class="swiper-slide">
-            <a href="pro_info.html"><img src="/static/upload/ban1.jpg"/></a>
+            <a href="{{slider.traget_url}}"><img src="{{ slider.img }}"/></a>
           </div>
-          <div class="swiper-slide">
-            <a href="pro_list.html"><img src="/static/upload/ban2.jpg"/></a>
-          </div>
-          <div class="swiper-slide">
-            <a href="pro_info.html"><img src="/static/upload/ban3.jpg"/></a>
-          </div>
-          <div class="swiper-slide">
-            <a href="pro_list.html"><img src="/static/upload/ban4.jpg"/></a>
-          </div>
+          {% endfor %}
         </div>
         <div class="swiper-pagination"></div>
       </div>
@@ -91,18 +84,15 @@
         <i class="news-icon-laba"></i>
         <div class="swiper-container swiper-news">
           <div class="swiper-wrapper">
+            {% for item in news_list %}
             <div class="swiper-slide">
-              <a href="news_info.html"
-                >热烈庆祝积分商城正式上线</a
-              >
+              <a href="{% url 'system:news_detail' item.pk %}">{{ item.title }}</a>
             </div>
-            <div class="swiper-slide">
-              <a href="news_info.html">蓝之蓝股份成公司上市</a>
-            </div>
+            {% endfor %}
           </div>
           <div class="swiper-pagination"></div>
         </div>
-        <a href="news_list.html" class="newsmore"
+        <a href="{% url 'system:news_list' %}" class="newsmore"
           ><i class="news-icon-more"></i
         ></a>
       </div>

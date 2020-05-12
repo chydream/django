@@ -38,10 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'oauth.apps.OauthConfig',
-    'mall.apps.MallConfig',
     'weibo.apps.WeiboConfig',
     'grade.apps.GradeConfig',
-    'debug_toolbar'
+    'debug_toolbar',
+    'system.apps.SystemConfig',
+    'accounts.apps.AccountsConfig',
+    'mall.apps.MallConfig',
+    'mine.apps.MineConfig',
 ]
 
 MIDDLEWARE = [
@@ -95,7 +98,7 @@ WSGI_APPLICATION = 'djangoDemo.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'students',
+        'NAME': 'django_mall',
         'USER': 'root',
         'PASSWORD': '12345678',
         'HOST': '127.0.0.1',

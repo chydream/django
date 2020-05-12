@@ -9,13 +9,27 @@ from django.urls import reverse
 from django.core.exceptions import PermissionDenied
 from django.views.generic import TemplateView
 
+from system.models import Slider, News
+from utils import constants
+
 
 def index(request):
     # url = reverse("article_detail", args=(2020,))
     # url_auth = reverse('auth:index')
     # print(url_auth)
     # return HttpResponse("ok:"+url)
-    return render_to_response('index.html')
+    slider_list = Slider.objects.filter(types=constants.SLIDER_TYPE_INDEX)
+    now_time = datetime.now()
+    news_list = News.objects.filter(types=constants.NEWS_TYPE_NEW,
+                                    is_top=True,
+                                    is_valid=True,
+                                    start_time__lte=now_time,
+                                    end_time__gte=now_time)
+    print(news_list)
+    return render(request, 'index.html', {
+        'slider_list': slider_list,
+        'news_list': news_list
+    })
 
 
 def index_one(request):

@@ -39,8 +39,9 @@ urlpatterns = [
     url(r'^article/(?P<year>[0-9]{4})/$', views.article, name='article_detail'),
     url(r'^auth/', include('oauth.urls', namespace='auth')),
     url(r'^mall/', include('mall.urls',namespace='mall')),
-    url(r'^weibo/',include('weibo.urls',namespace='weibo')),
-    url(r'^grade/',include('grade.urls',namespace='grade')),
+    url(r'^weibo/', include('weibo.urls',namespace='weibo')),
+    url(r'^grade/', include('grade.urls',namespace='grade')),
+    url(r'^system/', include('system.urls', namespace='system')),
     url(r'^templ/show/', views.templ_show, name='templ_show'),
 ]
 
