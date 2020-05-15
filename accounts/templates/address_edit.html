@@ -101,12 +101,13 @@
   });
   $("#id_delete_addr").click(function () {
     if(window.confirm('确认删除地址')){
-      // alert('确认了')
-      $.post("{% url 'accounts:address_delete' form.instance.id %}",function (rest) {
+      "{% if form.instance.id %}"
+      $.post("{% url 'accounts:address_delete' form.instance.id %}", function (rest) {
         if(rest == 'ok'){
           location.href = "{% url 'accounts:address_list' %}"
         }
       })
+      "{% endif %}"
     }
   })
 </script>

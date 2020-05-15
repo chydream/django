@@ -1,4 +1,5 @@
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 
@@ -53,10 +54,11 @@ def user_register(request):
 
 
 def address_list(request):
-    my_addr_list = UserAddress.objects.all(user=request.user, is_valid=True)
+    my_addr_list = UserAddress.objects.filter(user=request.user, is_valid=True)
     return render(request, 'address_list.html', {
         'my_addr_list': my_addr_list
     })
+
 
 def address_edit(request, pk):
     # print(pk)
@@ -72,14 +74,14 @@ def address_edit(request, pk):
             form.save()
             return redirect('accounts:address_list')
     else:
-        form = UserAddressForm(request,instance=addr,initial=initial)
+        form = UserAddressForm(request=request, instance=addr,initial=initial)
     return render(request, 'address_edit.html', {
         'form': form
     })
 
 
-def address_delete(request,pk):
-    addr = get_object_or_404(UserAddress,pk=pk,is_valid=True,user=request.user)
+def address_delete(request, pk):
+    addr = get_object_or_404(UserAddress, pk=pk, is_valid=True, user=request.user)
     addr.is_valid = False
     addr.save()
     return HttpResponse('ok')

@@ -56,9 +56,9 @@ class UserAddress(models.Model):
         ordering = ['is_default', '-updated_at']
 
     def get_phone_format(self):
-        return self.phone[0:3] + '****0 + self.phone[7:]'
+        return self.phone[0:3] + '****0' + self.phone[7:]
 
-    def get_regin_format(self):
+    def get_region_format(self):
         return '{self.province} {self.city} {self.area}'.format(self=self)
 
 class LoginRecord(models.Model):
