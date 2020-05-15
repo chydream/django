@@ -39,6 +39,7 @@ class Tag(models.Model):
 
 
 class Product(models.Model):
+    objects = models.Manager
     uid = models.UUIDField('商品ID', default=uuid.uuid4, editable=False)
     name = models.CharField('商品名称', max_length=128)
     desc = models.CharField('简单描述', max_length=256, null=True, blank=True)
@@ -46,7 +47,7 @@ class Product(models.Model):
     types = models.SmallIntegerField('商品类型',choices=constants.PRODUCT_TYPES_CHOICES, default=constants.PRODUCT_TYPE_ACTUAL)
     price = models.IntegerField('兑换价格(积分兑换)')
     origin_price = models.FloatField('原价')
-    img = models.ImageField('主图', upload_to='product')
+    img = models.ImageField('主图', upload_to='%Y%m/product')
     buy_link = models.CharField('购买链接', max_length=256, null=True,blank=True)
     reorder = models.SmallIntegerField('排序', default=0)
     status = models.SmallIntegerField('商品状态', default=constants.PRODUCT_STATUS_LOST, choices=constants.PRODUCT_STATUS_CHOICES)

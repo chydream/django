@@ -11,6 +11,7 @@ from utils.verify import VerifyCode
 
 
 def user_login(request):
+    next_url = request.GET.get('next', 'index')
     if request.method == 'POST':
         form = UserLoginForm(request=request, data=request.POST)
         code = request.POST.get('verify_code', None)
@@ -24,13 +25,14 @@ def user_login(request):
             user = authenticate(request, username=data['username'], password=data['password'])
             if user is not None:
                 login(request, user)
-                return redirect('index')
+                return redirect(next_url)
         else:
             print(form.errors)
     else:
         form = UserLoginForm(request)
     return render(request, 'login.html', {
-        'form': form
+        'form': form,
+        'next_url': next_url
     })
 
 def user_logout(request):
@@ -52,14 +54,14 @@ def user_register(request):
         'form': form
     })
 
-
+@login_required
 def address_list(request):
     my_addr_list = UserAddress.objects.filter(user=request.user, is_valid=True)
     return render(request, 'address_list.html', {
         'my_addr_list': my_addr_list
     })
 
-
+@login_required
 def address_edit(request, pk):
     # print(pk)
     user = request.user
@@ -79,7 +81,7 @@ def address_edit(request, pk):
         'form': form
     })
 
-
+@login_required
 def address_delete(request, pk):
     addr = get_object_or_404(UserAddress, pk=pk, is_valid=True, user=request.user)
     addr.is_valid = False

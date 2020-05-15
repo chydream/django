@@ -45,6 +45,8 @@ urlpatterns = [
     url(r'^accounts/', include('accounts.urls', namespace='accounts')),
     url(r'^templ/show/', views.templ_show, name='templ_show'),
 ]
+# + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 
 # 添加自定义的静态资源
 urlpatterns += [
