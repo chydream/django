@@ -2,9 +2,9 @@ from django.db import models
 
 from django.contrib.auth.models import User
 
-class MyUser(User):
+class MyUser(models.Model):
     class Meta:
-        proxy = True
+        proxy = False
 
     def get_format_username(self):
         return self.username[:3]+'***'

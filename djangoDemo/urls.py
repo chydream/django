@@ -42,6 +42,7 @@ urlpatterns = [
     url(r'^weibo/', include('weibo.urls',namespace='weibo')),
     url(r'^grade/', include('grade.urls',namespace='grade')),
     url(r'^system/', include('system.urls', namespace='system')),
+    url(r'^accounts/', include('accounts.urls', namespace='accounts')),
     url(r'^templ/show/', views.templ_show, name='templ_show'),
 ]
 
@@ -52,8 +53,8 @@ urlpatterns += [
     })
 ]
 
-if settings.DEBUG:
-    import debug_toolbar
-    urlpatterns = [
-        url(r'^__debug__/', include(debug_toolbar.urls))
-    ] + urlpatterns
+# if settings.DEBUG:
+#     import debug_toolbar
+#     urlpatterns = [
+#         url(r'^__debug__/', include(debug_toolbar.urls))
+#     ] + urlpatterns

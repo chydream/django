@@ -9,6 +9,7 @@ from django.urls import reverse
 from django.core.exceptions import PermissionDenied
 from django.views.generic import TemplateView
 
+from accounts.models import User
 from system.models import Slider, News
 from utils import constants
 
@@ -25,10 +26,12 @@ def index(request):
                                     is_valid=True,
                                     start_time__lte=now_time,
                                     end_time__gte=now_time)
-    print(news_list)
+    # user_id = request.session[constants.LOGIN_SESSION_ID]
+    # user = User.objects.get(pk=user_id)
     return render(request, 'index.html', {
         'slider_list': slider_list,
-        'news_list': news_list
+        'news_list': news_list,
+        # 'user': user
     })
 
 

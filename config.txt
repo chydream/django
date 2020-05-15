@@ -100,3 +100,22 @@ for item in comment_list:
 Sum Avg Count Max/Min
 User.objects.all().aggregate(Avg('price'))
 User.objects.annotate(Count('authors'))
+
+python manage.py createsuperuser
+
+from django.contrib.auth import logout
+def logout_view(request)
+    logout(request)
+
+
+request.user.has_perm('foo.add_bar')
+@permission_required('polls.can_vote
+
+u = User.objects.get(username='john')
+u.set_password('new password')
+u.save()
+u.check_password('my password')
+
+
+
+')

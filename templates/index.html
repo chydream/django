@@ -39,6 +39,11 @@
         >
       </div>
     </header>
+    {% if user.is_authenticated%}
+    <h3>欢迎你，{{user.username}},<a href="{% url 'accounts:user_logout' %}">登出</a> </h3>
+    {% else %}
+      <h3>欢迎你，<a href="{% url 'accounts:user_login' %}">请登录</a></h3>
+    {% endif %}
     <!--主体-->
     <div class="weui-content">
       <!--顶部轮播-->

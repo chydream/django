@@ -1,13 +1,15 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 # Create your models here.
 
 
-class User(models.Model):
-    objects = models.Manager()
-    username = models.CharField('用户名', max_length=64)
-    password = models.CharField('密码', max_length=255)
+class User(AbstractUser):
+    # objects = models.Manager()
+    # username = models.CharField('用户名', max_length=64)
+    # password = models.CharField('密码', max_length=255)
     avatar = models.ImageField('用户头像', upload_to='avatar', null=True, blank=True)
+    nickname = models.CharField('昵称', max_length=64)
     integral = models.IntegerField('用户的积分', default=0)
     level = models.SmallIntegerField('用户级别')
 
@@ -52,6 +54,12 @@ class UserAddress(models.Model):
     class Meta:
         db_table = 'accounts_user_address'
         ordering = ['is_default', '-updated_at']
+
+    def get_phone_format(self):
+        return self.phone[0:3] + '****0 + self.phone[7:]'
+
+    def get_regin_format(self):
+        return '{self.province} {self.city} {self.area}'.format(self=self)
 
 class LoginRecord(models.Model):
     objects = models.Manager()

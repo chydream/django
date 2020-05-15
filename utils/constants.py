@@ -1,3 +1,5 @@
+LOGIN_SESSION_ID='user_id'
+
 SLIDER_TYPE_INDEX = 11
 SLIDER_TYPES_CHOICES = (
     (11, '首页'),

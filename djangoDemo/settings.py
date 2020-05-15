@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'oauth.apps.OauthConfig',
     'weibo.apps.WeiboConfig',
     'grade.apps.GradeConfig',
-    'debug_toolbar',
+    # 'debug_toolbar',
     'system.apps.SystemConfig',
     'accounts.apps.AccountsConfig',
     'mall.apps.MallConfig',
@@ -48,11 +48,11 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    # 'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -154,3 +154,4 @@ STATICFILES_DIRS = [
 # 用户上传文件目录
 MEDIA_URL = '/medias/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'medias')
+AUTH_USER_MODEL = 'accounts.User'
