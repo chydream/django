@@ -58,15 +58,20 @@ class Product(models.Model):
     is_valid = models.BooleanField('是否有效', default=True)
     created_at = models.DateTimeField('创建时间', auto_now_add=True)
     updated_at = models.DateTimeField('修改时间', auto_now=True)
-    tags = models.ManyToManyField(Tag, verbose_name='标签', related_name='tags')
-    classes = models.ManyToManyField(Classify, verbose_name='分类', related_name='classes')
+    tags = models.ManyToManyField(Tag, verbose_name='标签', related_name='tags', null=True, blank=True)
+    classes = models.ManyToManyField(Classify, verbose_name='分类', related_name='classes', null=True, blank=True)
     banners = GenericRelation(ImageFile, verbose_name='banner图', related_query_name='banners')
 
 
     class Meta:
         db_table = 'mall_product'
         ordering = ['-reorder']
+        verbose_name = '商品信息'
+        verbose_name_plural = '商品信息'
 
+
+    def __str__(self):
+        return self.name
     # collections = GenericRelation('Collection')
 
 

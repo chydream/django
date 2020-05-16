@@ -22,6 +22,8 @@ class Slider(models.Model):
     class Meta:
         db_table = 'system_slider'
         ordering = ['-reorder']
+        verbose_name = '轮播图'
+        verbose_name_plural = '轮播图'
 
 
 class News(models.Model):
@@ -40,6 +42,8 @@ class News(models.Model):
     class Meta:
         db_table='system_news'
         ordering = ['-reorder']
+        verbose_name = '新闻及通知'
+        verbose_name_plural = '新闻及通知'
 
 
 class ImageFile(models.Model):
@@ -54,3 +58,5 @@ class ImageFile(models.Model):
 
     class Meta:
         db_table = 'system_images'
+        verbose_name = '图片'
+        verbose_name_plural = '图片'
