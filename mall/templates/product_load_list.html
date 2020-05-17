@@ -1,6 +1,6 @@
 {% for item in object_list %}
 <div class="pro-items">
-    <a href="pro_info.html" class="weui-media-box weui-media-box_appmsg">
+    <a href="{% url 'mall:pro_info' item.uid %}" class="weui-media-box weui-media-box_appmsg">
         <div class="weui-media-box__hd"><img class="weui-media-box__thumb" src="{{ item.img.url }}" alt=""></div>
         <div class="weui-media-box__bd">
             <h1 class="weui-media-box__desc">{{ item.name }}</h1>

@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 from mall.forms import ProductAdminForm
-from mall.models import Product
+from mall.models import Product, Classify, Tag
 from utils.admin_actions import set_invalid, set_valid
 
 
@@ -22,3 +22,12 @@ class ProductAdmin(admin.ModelAdmin):
     form = ProductAdminForm
 
 # admin.site.register(Product, ProductAdmin)
+
+
+@admin.register(Classify)
+class ClassifyAdmin(admin.ModelAdmin):
+    list_display = ('parent', 'name', 'code', 'is_valid')
+
+@admin.register(Tag)
+class TagAdmin(admin.ModelAdmin):
+    list_display = ('name', 'is_valid', 'code')

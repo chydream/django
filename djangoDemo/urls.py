@@ -19,6 +19,13 @@ from django.views.static import serve
 
 from . import views, settings
 
+import xadmin
+xadmin.autodiscover()
+
+# version模块自动注册需要版本控制的 Model
+from xadmin.plugins import xversion
+xversion.register_models()
+
 handler500 = 'djangoDemo.views.page_500'
 handler404 = 'djangoDemo.views.page_404'
 
@@ -26,6 +33,7 @@ handler404 = 'djangoDemo.views.page_404'
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'xadmin/', include(xadmin.site.urls)),
     url(r'^index/$', views.index),
     url(r'^$', views.index, name='index'),
     url(r'^index1/$', views.index_one, name='index_one'),

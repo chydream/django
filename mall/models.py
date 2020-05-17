@@ -3,6 +3,7 @@ import uuid
 from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
+from ckeditor.fields import RichTextField
 
 # Create your models here.
 from accounts.models import User
@@ -23,7 +24,12 @@ class Classify(models.Model):
     updated_at = models.DateTimeField('修改时间', auto_now=True)
     class Meta:
         db_table = 'mall_classify'
+        verbose_name = '商品分类'
+        verbose_name_plural = '商品分类'
+        ordering = ['-reorder']
 
+    def __str__(self):
+        return '{}:{}'.format(self.code, self.name)
 
 class Tag(models.Model):
     uid = models.UUIDField('标签ID', default=uuid.uuid4, editable=True)
@@ -36,14 +42,21 @@ class Tag(models.Model):
     updated_at = models.DateTimeField('修改时间', auto_now=True)
     class Meta:
         db_table = 'mall_tag'
+        verbose_name = '商品标签'
+        verbose_name_plural = '商品标签'
+        ordering = ['-reorder']
 
+    def __str__(self):
+        return '{}:{}'.format(self.code, self.name)
 
 class Product(models.Model):
     objects = models.Manager
     uid = models.UUIDField('商品ID', default=uuid.uuid4, editable=False)
     name = models.CharField('商品名称', max_length=128)
     desc = models.CharField('简单描述', max_length=256, null=True, blank=True)
-    content = models.TextField('商品描述',default='1')
+    # content = models.TextField('商品描述', default='')
+    content = RichTextField('商品描述', default='')
+
     types = models.SmallIntegerField('商品类型',choices=constants.PRODUCT_TYPES_CHOICES, default=constants.PRODUCT_TYPE_ACTUAL)
     price = models.IntegerField('兑换价格(积分兑换)')
     origin_price = models.FloatField('原价')
@@ -58,7 +71,7 @@ class Product(models.Model):
     is_valid = models.BooleanField('是否有效', default=True)
     created_at = models.DateTimeField('创建时间', auto_now_add=True)
     updated_at = models.DateTimeField('修改时间', auto_now=True)
-    tags = models.ManyToManyField(Tag, verbose_name='标签', related_name='tags', null=True, blank=True)
+    tags = models.ManyToManyField(Tag, verbose_name='标签', related_name='tags')
     classes = models.ManyToManyField(Classify, verbose_name='分类', related_name='classes', null=True, blank=True)
     banners = GenericRelation(ImageFile, verbose_name='banner图', related_query_name='banners')
 

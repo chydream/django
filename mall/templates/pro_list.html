@@ -40,7 +40,7 @@
   <div id="list" class='demos-content-padded proListWrap'>
     {% for item in object_list %}
     <div class="pro-items">
-      <a href="pro_info.html" class="weui-media-box weui-media-box_appmsg">
+      <a href="{% url 'mall:pro_info' item.uid %}" class="weui-media-box weui-media-box_appmsg">
         <div class="weui-media-box__hd"><img class="weui-media-box__thumb" src="{{ item.img.url }}" alt=""></div>
         <div class="weui-media-box__bd">
           <h1 class="weui-media-box__desc">{{ item.name }}</h1>
@@ -55,7 +55,7 @@
     {% endfor %}
 
   </div>
-  <div class="weui-loadmore" id="loading">
+  <div class="weui-loadmore" id="loading" style="display:none;">
     <i class="weui-loading"></i>
     <span class="weui-loadmore__tips">正在加载</span>
   </div>
@@ -78,7 +78,8 @@
           url:'{% url "mall:product_load_list" %}',
           data:{
             page: page,
-            name: "{{search_data.name}}"
+            name: "{{search_data.name}}",
+            tag: "{{search_data.tag|default_if_none:''}}"
           },
           success: function (rest) {
             $('#list').append(rest);

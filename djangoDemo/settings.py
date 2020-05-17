@@ -45,6 +45,11 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'mall.apps.MallConfig',
     'mine.apps.MineConfig',
+    'xadmin',
+    'crispy_forms',
+    'reversion',
+    'ckeditor',
+    # 'ckeditor_uploader'
 ]
 
 MIDDLEWARE = [
@@ -157,3 +162,4 @@ MEDIA_URL = '/medias/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'medias')
 AUTH_USER_MODEL = 'accounts.User'
 LOGIN_URL = '/accounts/user/login/'
+CKEDITOR_UPLOAD_PATH = os.path.join(MEDIA_ROOT, 'uploads')

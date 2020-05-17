@@ -28,7 +28,8 @@ class Order(models.Model):
 
     class Meta:
         db_table = 'mine_order'
-
+        verbose_name = '订单列表'
+        verbose_name_plural = '订单管理'
 
 class Cart(models.Model):
     user = models.ForeignKey(User, related_name='carts')
@@ -49,7 +50,8 @@ class Cart(models.Model):
 
     class Meta:
         db_table = 'mine_cart'
-
+        verbose_name = '购物车'
+        verbose_name_plural = '购物车'
 
 class Comments(models.Model):
     product = models.ForeignKey(Product, related_name='comments', verbose_name='商品')
@@ -69,3 +71,5 @@ class Comments(models.Model):
 
     class Meta:
         db_table = 'mine_product_comments'
+        verbose_name = '商品评价'
+        verbose_name_plural = '商品评价'

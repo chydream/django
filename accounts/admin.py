@@ -2,7 +2,8 @@ from django.contrib import admin
 
 # Register your models here.
 from django.contrib.auth.admin import UserAdmin
-from accounts.models import User
+from accounts.models import User, UserProfile, UserAddress
+
 
 @admin.register(User)
 class UserAdmin(UserAdmin):
@@ -24,3 +25,13 @@ class UserAdmin(UserAdmin):
     enable_user.short_description = '批量启用用户'
 
 # admin.site.register(User, UserAdmin)
+
+@admin.register(UserProfile)
+class UserProfileAdmin(admin.ModelAdmin):
+    list_display = ('user', 'phone_no', 'sex')
+
+@admin.register(UserAddress)
+class UserAddressAdmin(admin.ModelAdmin):
+    list_display = ('user', 'province', 'city', 'username', 'address', 'phone', 'is_valid', 'is_default')
+    search_fields = ('user__username', 'user__nickname', 'phone', 'username')
+

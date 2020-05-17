@@ -61,13 +61,13 @@
       <!--图标分类-->
       <div class="weui-flex wy-iconlist-box">
         <div class="weui-flex__item">
-          <a href="pro_list.html" class="wy-links-iconlist"
+          <a href="{% url 'mall:pro_list' %}?tag=jxtj" class="wy-links-iconlist"
             ><div class="img"><img src="/static/images/icon-link1.png" /></div>
             <p>精选推荐</p></a
           >
         </div>
         <div class="weui-flex__item">
-          <a href="pro_list.html" class="wy-links-iconlist"
+          <a href="{% url 'mall:pro_list' %}?tag=jstj" class="wy-links-iconlist"
             ><div class="img"><img src="/static/images/icon-link2.png" /></div>
             <p>酒水专场</p></a
           >
@@ -111,24 +111,11 @@
             style="padding-top:34px;"
           >
             <div class="swiper-wrapper">
+              {% for item in jx_list %}
               <div class="swiper-slide">
-                <a href="pro_info.html"><img src="/static/upload/jingxuan1.jpg"/></a>
+                <a href="{% url 'mall:pro_info' item.uid %}"><img src="{{ item.img.url }}"/></a>
               </div>
-              <div class="swiper-slide">
-                <a href="pro_info.html"><img src="/static/upload/jingxuan2.jpg"/></a>
-              </div>
-              <div class="swiper-slide">
-                <a href="pro_info.html"><img src="/static/upload/jingxuan3.jpg"/></a>
-              </div>
-              <div class="swiper-slide">
-                <a href="pro_info.html"><img src="/static/upload/jingxuan4.jpg"/></a>
-              </div>
-              <div class="swiper-slide">
-                <a href="pro_info.html"><img src="/static/upload/jingxuan5.jpg"/></a>
-              </div>
-              <div class="swiper-slide">
-                <a href="pro_info.html"><img src="/static/upload/jingxuan1.jpg"/></a>
-              </div>
+              {% endfor %}
             </div>
             <div class="swiper-pagination jingxuan-pagination"></div>
           </div>
@@ -143,42 +130,11 @@
             style="padding-top:34px;"
           >
             <div class="swiper-wrapper">
+              {% for item in js_list %}
               <div class="swiper-slide">
-                <a href="pro_info.html"><img src="/static/upload/jingxuan1.jpg"/></a>
+                <a href="{% url 'mall:pro_info' item.uid %}"><img src="{{ item.img.url }}"/></a>
               </div>
-              <div class="swiper-slide">
-                <a href="pro_info.html"><img src="/static/upload/jingxuan2.jpg"/></a>
-              </div>
-              <div class="swiper-slide">
-                <a href="pro_info.html"><img src="/static/upload/jingxuan3.jpg"/></a>
-              </div>
-              <div class="swiper-slide">
-                <a href="pro_info.html"><img src="/static/upload/jingxuan4.jpg"/></a>
-              </div>
-              <div class="swiper-slide">
-                <a href="pro_info.html"><img src="/static/upload/jingxuan5.jpg"/></a>
-              </div>
-              <div class="swiper-slide">
-                <a href="pro_info.html"><img src="/static/upload/jingxuan1.jpg"/></a>
-              </div>
-              <div class="swiper-slide">
-                <a href="pro_info.html"><img src="/static/upload/jingxuan1.jpg"/></a>
-              </div>
-              <div class="swiper-slide">
-                <a href="pro_info.html"><img src="/static/upload/jingxuan2.jpg"/></a>
-              </div>
-              <div class="swiper-slide">
-                <a href="pro_info.html"><img src="/static/upload/jingxuan3.jpg"/></a>
-              </div>
-              <div class="swiper-slide">
-                <a href="pro_info.html"><img src="/static/upload/jingxuan4.jpg"/></a>
-              </div>
-              <div class="swiper-slide">
-                <a href="pro_info.html"><img src="/static/upload/jingxuan5.jpg"/></a>
-              </div>
-              <div class="swiper-slide">
-                <a href="pro_info.html"><img src="/static/upload/jingxuan1.jpg"/></a>
-              </div>
+              {% endfor %}
             </div>
             <div class="swiper-pagination jingxuan-pagination"></div>
           </div>

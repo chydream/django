@@ -10,6 +10,7 @@ from django.core.exceptions import PermissionDenied
 from django.views.generic import TemplateView
 
 from accounts.models import User
+from mall.models import Product
 from system.models import Slider, News
 from utils import constants
 
@@ -28,9 +29,21 @@ def index(request):
                                     end_time__gte=now_time)
     # user_id = request.session[constants.LOGIN_SESSION_ID]
     # user = User.objects.get(pk=user_id)
+    js_list = Product.objects.filter(
+        status=constants.PRODUCT_STATUS_SELL,
+        is_valid=True,
+        tags__code='jstj'
+    )
+    jx_list = Product.objects.filter(
+        status=constants.PRODUCT_STATUS_SELL,
+        is_valid=True,
+        tags__code='jxtj'
+    )
     return render(request, 'index.html', {
         'slider_list': slider_list,
         'news_list': news_list,
+        'js_list': js_list,
+        'jx_list': jx_list
         # 'user': user
     })
 

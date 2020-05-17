@@ -1,5 +1,5 @@
 from django.db.models import Q
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 
 # Create your views here.
 from django.views.generic import ListView
@@ -17,8 +17,11 @@ def pro_list(request):
         'prod_list': prod_list
     })
 
-def pro_info(request):
-    return render(request, 'pro_info.html')
+def pro_info(request, pk):
+    prod_obj = get_object_or_404(Product, uid=pk, is_valid=True)
+    return render(request, 'pro_info.html', {
+        'prod_obj': prod_obj
+    })
 
 
 class ProductList(ListView):
@@ -29,6 +32,10 @@ class ProductList(ListView):
         name = self.request.GET.get('name', '')
         if name:
            query = query & Q(name__icontains=name)
+
+        tag = self.request.GET.get('tag', '')
+        if tag:
+            query = query & Q(tags__code=tag)
         return Product.objects.filter(query)
 
     def get_context_data(self, **kwargs):
