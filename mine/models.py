@@ -31,10 +31,14 @@ class Order(models.Model):
         verbose_name = '订单列表'
         verbose_name_plural = '订单管理'
 
+    def get_cart_products(self):
+        return self.carts.exclude(status=constants.ORDER_STATUS_INIT)
+
+
 class Cart(models.Model):
     user = models.ForeignKey(User, related_name='carts')
     product = models.ForeignKey(Product)
-    order = models.ForeignKey(Order, verbose_name='订单', null=True)
+    order = models.ForeignKey(Order, verbose_name='订单', null=True, related_name='carts')
     name = models.CharField('商品名称', max_length=128)
     img = models.ImageField('商品的主图')
     price = models.IntegerField('兑换价格')

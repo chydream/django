@@ -79,7 +79,8 @@
           data:{
             page: page,
             name: "{{search_data.name}}",
-            tag: "{{search_data.tag|default_if_none:''}}"
+            tag: "{{search_data.tag|default_if_none:''}}",
+            cls: "{{search_data.cls|default_if_none:''}}"
           },
           success: function (rest) {
             $('#list').append(rest);

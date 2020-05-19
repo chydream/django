@@ -51,6 +51,7 @@ urlpatterns = [
     url(r'^grade/', include('grade.urls',namespace='grade')),
     url(r'^system/', include('system.urls', namespace='system')),
     url(r'^accounts/', include('accounts.urls', namespace='accounts')),
+    url(r'^m/', include('mine.urls', namespace='mine')),
     url(r'^templ/show/', views.templ_show, name='templ_show'),
 ]
 # + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

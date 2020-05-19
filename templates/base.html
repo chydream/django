@@ -21,12 +21,21 @@
     {% endblock %}
     <script src="/static/lib/jquery-2.1.4.js"></script>
     <script src="/static/lib/fastclick.js"></script>
+    <script src="/static/js/jquery-weui.js"></script>
     <script>
       $(function() {
         FastClick.attach(document.body);
       });
+      $(".wy-header-icon-back").click(function () {
+          history.go(-1);
+      })
+      {% if messages %}
+          {% for msg in messages %}
+                $.toptip('{{ msg }}', '{{ msg.tags }}')
+          {% endfor %}
+      {% endif %}
     </script>
-    <script src="/static/js/jquery-weui.js"></script>
+
     {% block swiper %}
         {# 轮播图  #}
     {% endblock %}

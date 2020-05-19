@@ -1,19 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>商品分类</title>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, user-scalable=no"
-    />
-    <meta name="description" content="" />
-    <link rel="stylesheet" href="lib/weui.min.css" />
-    <link rel="stylesheet" href="css/jquery-weui.css" />
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
-  <body ontouchstart class="container">
+{% extends 'base.html' %}
+{% block title %}
+<title>商品分类</title>
+{% endblock %}
+{% block container%}
     <!--顶部搜索-->
     <!--主体-->
     <div class="wy-content">
@@ -1349,14 +1338,8 @@
         </ul>
       </section>
     </div>
-    <script src="lib/jquery-2.1.4.js"></script>
-    <script src="lib/fastclick.js"></script>
-    <script>
-      $(function() {
-        FastClick.attach(document.body);
-      });
-    </script>
-    <script src="js/jquery-weui.js"></script>
+{% endblock %}
+{% block footer %}
     <script type="text/javascript">
       $(function($) {
         $('#sidebar ul li').click(function() {
@@ -1373,5 +1356,4 @@
         });
       });
     </script>
-  </body>
-</html>
+{% endblock %}

@@ -2,6 +2,7 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 # Create your models here.
+from django.db.models import F
 
 
 class User(AbstractUser):
@@ -17,6 +18,31 @@ class User(AbstractUser):
         db_table = 'accounts_user'
         verbose_name = '用户账户'
         verbose_name_plural = '用户账户'
+
+    @property
+    def default_addr(self):
+        addr = None
+        user_list = self.user_address.filter(is_valid=True)
+        try:
+            addr = user_list.filter(is_default=True)[0]
+        except IndexError:
+            try:
+                addr = user_list[0]
+            except IndexError:
+                pass
+
+        return addr
+
+    def ope_integral_account(self, type, count):
+        if type == 1:
+            self.integral = F('integral') + abs(count)
+        else:
+            self.integral = F('integral') - abs(count)
+        self.save()
+        self.refresh_from_db()
+
+    def __str__(self):
+        return self.username
 
 class UserProfile(models.Model):
     SEX_CHOICES=(
@@ -61,6 +87,10 @@ class UserAddress(models.Model):
 
     def get_region_format(self):
         return '{self.province} {self.city} {self.area}'.format(self=self)
+
+    def __str__(self):
+        return self.get_region_format() + self.address
+
 
 class LoginRecord(models.Model):
     objects = models.Manager()

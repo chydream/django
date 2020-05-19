@@ -19,8 +19,13 @@ def pro_list(request):
 
 def pro_info(request, pk):
     prod_obj = get_object_or_404(Product, uid=pk, is_valid=True)
+    user = request.user
+    default_addr = None
+    if user.is_authenticated:
+        default_addr = user.default_addr
     return render(request, 'pro_info.html', {
-        'prod_obj': prod_obj
+        'prod_obj': prod_obj,
+        'default_addr': default_addr
     })
 
 
@@ -36,6 +41,9 @@ class ProductList(ListView):
         tag = self.request.GET.get('tag', '')
         if tag:
             query = query & Q(tags__code=tag)
+        cls = self.request.GET.get('cls', '')
+        if cls:
+            query = query & Q(classes__code=cls)
         return Product.objects.filter(query)
 
     def get_context_data(self, **kwargs):
@@ -43,3 +51,9 @@ class ProductList(ListView):
         # context['search_name'] = self.request.GET.get('name', '')
         context['search_data'] = self.request.GET.dict()
         return context
+
+
+def prod_classify(request):
+    return render(request, 'classify.html', {
+
+    })
