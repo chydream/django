@@ -116,6 +116,16 @@ u.set_password('new password')
 u.save()
 u.check_password('my password')
 
-
-
-')
+七、Django命令工具与中间件
+django-admin startproject name 创建工程
+python manage.py startapp name 创建模块
+python manage.py runserver 0.0.0.0:8080启动项目
+python manage.py createsuperuser 创建超级管理员
+python manage.py changepassword 修改密码
+python manage.py check
+python manage.py makemigrations
+python manage.py migrate
+python manage.py collectstatic 收集依赖中的静态文件
+python manage.py shell  进入django控制台
+python manage.py clearsessions
+python manage.py 添加自定义命令

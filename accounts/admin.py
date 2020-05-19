@@ -13,10 +13,10 @@ class UserAdmin(UserAdmin):
     actions = ['disable_user', 'enable_user']  # 添加自定义方法
     fieldsets = (
         (None, {'fields': ('username', 'password')}),
-        (_('Personal info'), {'fields': ('first_name', 'last_name', 'email', 'integral', 'nickname')}),
-        (_('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser',
+        (('Personal info'), {'fields': ('first_name', 'last_name', 'email', 'integral', 'nickname')}),
+        (('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser',
                                        'groups', 'user_permissions')}),
-        (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
+        (('Important dates'), {'fields': ('last_login', 'date_joined')}),
     )
 
     def format_username(self, obj):
