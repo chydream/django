@@ -8,14 +8,24 @@ from django.template import loader
 from django.urls import reverse
 from django.core.exceptions import PermissionDenied
 from django.views.generic import TemplateView
+import logging
+
+
 
 from accounts.models import User
 from mall.models import Product
 from system.models import Slider, News
 from utils import constants
 
+logger = logging.getLogger('django.db.backends ')
+
 
 def index(request):
+    logger.debug('调试信息')
+    logger.info('调试信息')
+    logger.error('错误信息')
+    # raise Exception
+    # print(request.my_user)
     # url = reverse("article_detail", args=(2020,))
     # url_auth = reverse('auth:index')
     # print(url_auth)

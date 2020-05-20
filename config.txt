@@ -129,3 +129,6 @@ python manage.py collectstatic 收集依赖中的静态文件
 python manage.py shell  进入django控制台
 python manage.py clearsessions
 python manage.py 添加自定义命令
+
+from django.core.mail import send_mail
+send_mail('邮件主题','邮件内容','710962261@qq.com', [710962261@qq.com])

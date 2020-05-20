@@ -57,10 +57,12 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    # 'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'utils.middleware.ip_middleware',
+    'utils.middleware.MallAuthMiddleware'
 ]
 
 ROOT_URLCONF = 'djangoDemo.urls'
@@ -165,3 +167,72 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'medias')
 AUTH_USER_MODEL = 'accounts.User'
 LOGIN_URL = '/accounts/user/login/'
 CKEDITOR_UPLOAD_PATH = os.path.join(MEDIA_ROOT, 'uploads')
+
+CSRF_USE_SESSIONS = False
+
+EMAIL_HOST = 'smtp.qq.com'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = '710962261@qq.com'
+EMAIL_HOST_PASSWORD = '5249291'
+
+SERVER_EMAIL = '710962261@qq.com'
+ADMINS = [('admin', '710962261@qq.com')]
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+    },
+    'filters': {
+        'special': {
+            '()': 'project.logging.SpecialFilter',
+            'foo': 'bar',
+        },
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue',
+        },
+    },
+    'handlers': {
+        'log_file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'log/debug.log'),
+        },
+        'log_index_file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'log/debug_index.log'),
+        },
+        'console': {
+            'level': 'DEBUG',
+            # 'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+        },
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+            # 'filters': ['special']
+        }
+    },
+    'loggers': {
+        'django.db.backends': {
+            'handlers': ['log_file', 'console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'index': {
+            'handlers': ['log_index_file', 'console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
